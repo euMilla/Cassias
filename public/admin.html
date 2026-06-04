@@ -1,0 +1,2150 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Admin Cassia's Doces - pedidos salvos." />
+    <title>Admin | Cassia's Doces</title>
+    <link rel="icon" href="assets/logo-cassias.png" />
+    <style>
+:root {
+  --rose-50: #fff6f8;
+  --rose-100: #ffe6ec;
+  --rose-200: #ffc8d7;
+  --rose-400: #ef7398;
+  --berry: #a83255;
+  --berry-dark: #6f1f38;
+  --cream: #fffaf3;
+  --cream-strong: #f8eadc;
+  --chocolate: #4b2b2b;
+  --mint: #5f9b87;
+  --ink: #302225;
+  --muted: #80656a;
+  --line: rgba(111, 31, 56, 0.16);
+  --shadow: 0 18px 50px rgba(96, 39, 54, 0.14);
+  --radius: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--cream);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+select,
+input,
+textarea {
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.container {
+  width: min(1160px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 14px max(16px, calc((100vw - 1160px) / 2));
+  background: rgba(255, 250, 243, 0.92);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(14px);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 850;
+  color: var(--berry-dark);
+  min-width: 0;
+}
+
+.brand-logo {
+  width: 54px;
+  height: 54px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  background: var(--cream);
+  box-shadow: 0 6px 16px rgba(111, 31, 56, 0.12);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--chocolate);
+  font-weight: 750;
+}
+
+.nav-links a {
+  padding: 10px 12px;
+  border-radius: var(--radius);
+}
+
+.nav-links a:hover {
+  background: var(--rose-100);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.social-links,
+.footer-social {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.social-links a,
+.footer-social a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 8px 11px;
+  border-radius: var(--radius);
+  font-size: 0.86rem;
+  font-weight: 850;
+}
+
+.social-links a {
+  border: 1px solid var(--line);
+  background: white;
+  color: var(--berry-dark);
+}
+
+.social-links a:hover {
+  background: var(--rose-100);
+}
+
+.admin-corner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 8px 11px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--berry-dark);
+  color: white;
+  font-size: 0.86rem;
+  font-weight: 850;
+}
+
+.admin-corner:hover {
+  background: var(--berry);
+}
+
+.hero {
+  min-height: 68vh;
+  display: grid;
+  align-items: center;
+  background-image:
+    linear-gradient(90deg, rgba(69, 32, 39, 0.9), rgba(90, 40, 56, 0.56), rgba(255, 236, 241, 0.1)),
+    url("assets/bolos.jpg");
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+.hero-content {
+  padding: 80px 0 72px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: var(--berry);
+  font-size: 0.82rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.hero .eyebrow {
+  color: #ffe1eb;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  max-width: 760px;
+  margin-bottom: 16px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 4rem;
+  line-height: 0.95;
+  font-weight: 900;
+}
+
+h2 {
+  margin-bottom: 10px;
+  color: var(--berry-dark);
+  font-size: 2rem;
+  line-height: 1.1;
+}
+
+h3 {
+  margin-bottom: 8px;
+  color: var(--chocolate);
+  font-size: 1.1rem;
+  line-height: 1.2;
+}
+
+.hero-copy {
+  max-width: 610px;
+  margin-bottom: 26px;
+  color: #fff7fb;
+  font-size: 1.1rem;
+}
+
+.hero-actions,
+.product-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 12px 18px;
+  border: 0;
+  border-radius: var(--radius);
+  font-weight: 850;
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+}
+
+.button.primary {
+  background: var(--berry);
+  color: white;
+  box-shadow: 0 14px 28px rgba(168, 50, 85, 0.28);
+}
+
+.button.secondary {
+  background: rgba(255, 255, 255, 0.18);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+}
+
+.button.whatsapp {
+  background: var(--mint);
+  color: white;
+  box-shadow: 0 14px 28px rgba(95, 155, 135, 0.26);
+}
+
+.button.ghost {
+  min-height: 38px;
+  padding: 8px 10px;
+  background: var(--rose-100);
+  color: var(--berry-dark);
+}
+
+.button.full {
+  width: 100%;
+}
+
+.promise-band {
+  background: white;
+  border-bottom: 1px solid var(--line);
+}
+
+.promise-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 24px 0;
+}
+
+.promise-grid div {
+  padding-left: 16px;
+  border-left: 4px solid var(--rose-400);
+}
+
+.promise-grid strong,
+.promise-grid span {
+  display: block;
+}
+
+.promise-grid strong {
+  color: var(--chocolate);
+}
+
+.promise-grid span {
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+
+.menu-section {
+  padding: 58px 0;
+}
+
+.section-heading {
+  max-width: 720px;
+  margin-bottom: 28px;
+}
+
+.section-heading p:not(.eyebrow) {
+  color: var(--muted);
+}
+
+.section-heading.narrow {
+  max-width: 620px;
+}
+
+.shop-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 370px;
+  align-items: start;
+  gap: 28px;
+}
+
+.category-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.tab-button {
+  min-height: 42px;
+  padding: 9px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: white;
+  color: var(--berry-dark);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.tab-button.is-active,
+.tab-button:hover {
+  background: var(--berry);
+  color: white;
+  border-color: var(--berry);
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.product-card {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: white;
+  box-shadow: 0 10px 28px rgba(96, 39, 54, 0.08);
+}
+
+.product-media {
+  position: relative;
+  aspect-ratio: 1.18 / 1;
+  overflow: hidden;
+  background: var(--rose-100);
+}
+
+.product-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  max-width: calc(100% - 24px);
+  padding: 6px 10px;
+  border-radius: var(--radius);
+  background: rgba(255, 250, 243, 0.94);
+  color: var(--berry-dark);
+  font-size: 0.78rem;
+  font-weight: 850;
+}
+
+.product-body {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+}
+
+.product-body p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+
+.field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.product-card label,
+.order-form label {
+  display: grid;
+  gap: 6px;
+  color: var(--berry-dark);
+  font-size: 0.82rem;
+  font-weight: 850;
+}
+
+.product-card select,
+.product-card input,
+.order-form input,
+.order-form select,
+.order-form textarea {
+  width: 100%;
+  min-height: 42px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--cream);
+  padding: 10px 11px;
+  outline: none;
+}
+
+.product-card textarea,
+.order-form textarea {
+  resize: vertical;
+}
+
+.product-card select:focus,
+.product-card input:focus,
+.order-form input:focus,
+.order-form select:focus,
+.order-form textarea:focus {
+  border-color: var(--berry);
+  box-shadow: 0 0 0 3px rgba(168, 50, 85, 0.12);
+}
+
+.price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+}
+
+.price-row strong {
+  color: var(--berry-dark);
+  font-size: 1.24rem;
+}
+
+.checkout-panel {
+  position: sticky;
+  top: 86px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: white;
+  box-shadow: var(--shadow);
+  padding: 18px;
+}
+
+.panel-heading h2 {
+  font-size: 1.35rem;
+}
+
+.cart-list {
+  display: grid;
+  gap: 10px;
+  min-height: 78px;
+  margin-bottom: 14px;
+}
+
+.empty-cart {
+  display: grid;
+  place-items: center;
+  min-height: 78px;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  color: var(--muted);
+  text-align: center;
+}
+
+.cart-line {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.cart-line strong,
+.cart-line span {
+  display: block;
+}
+
+.cart-line span {
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.cart-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cart-action {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--rose-50);
+  color: var(--berry-dark);
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.order-form {
+  display: grid;
+  gap: 12px;
+}
+
+.totals {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border-radius: var(--radius);
+  background: var(--rose-50);
+}
+
+.totals div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.totals span {
+  color: var(--muted);
+}
+
+.grand-total {
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+  color: var(--berry-dark);
+  font-size: 1.1rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 110px;
+  gap: 10px;
+}
+
+.field-hint {
+  margin: -4px 0 0;
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.status-message {
+  min-height: 24px;
+  margin: 0;
+  color: var(--berry-dark);
+  font-weight: 750;
+}
+
+.status-message.is-error {
+  color: #9a2828;
+}
+
+.delivery-section {
+  padding: 54px 0 62px;
+  background: white;
+  border-top: 1px solid var(--line);
+}
+
+.delivery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.delivery-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--cream);
+  padding: 14px;
+}
+
+.delivery-card strong,
+.delivery-card span {
+  display: block;
+}
+
+.delivery-card span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.footer {
+  padding: 26px 0;
+  background: var(--chocolate);
+  color: white;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.footer span {
+  display: block;
+  color: #f6dfe6;
+}
+
+.footer-brand {
+  display: grid;
+  grid-template-columns: 86px minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+}
+
+.footer-brand strong,
+.footer-brand span {
+  grid-column: 2;
+}
+
+.footer-logo {
+  grid-row: 1 / span 2;
+  width: 86px;
+  height: 86px;
+  border-radius: var(--radius);
+  object-fit: cover;
+  background: var(--cream);
+}
+
+.footer-social a {
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  color: white;
+}
+
+.footer-social a:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.button.secondary-dark {
+  background: var(--chocolate);
+  color: white;
+}
+
+.admin-page {
+  background: #fffdf9;
+}
+
+.admin-shell {
+  padding: 34px 0 58px;
+}
+
+.admin-login,
+.admin-heading,
+.admin-content,
+.orders-toolbar,
+.detail-heading,
+.admin-item {
+  display: grid;
+  gap: 14px;
+}
+
+.admin-login {
+  grid-template-columns: minmax(0, 1fr) 360px;
+  align-items: start;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: white;
+  box-shadow: var(--shadow);
+}
+
+.admin-page h1 {
+  margin-bottom: 10px;
+  color: var(--berry-dark);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 2.8rem;
+  line-height: 1;
+}
+
+.admin-login p,
+.admin-heading p {
+  color: var(--muted);
+}
+
+.admin-login-form {
+  display: grid;
+  gap: 12px;
+}
+
+.admin-login-form label,
+.orders-toolbar label {
+  display: grid;
+  gap: 6px;
+  color: var(--berry-dark);
+  font-size: 0.82rem;
+  font-weight: 850;
+}
+
+.admin-login-form input,
+.orders-toolbar input,
+.admin-select {
+  width: 100%;
+  min-height: 40px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--cream);
+  padding: 9px 10px;
+  outline: none;
+}
+
+.admin-login-form input:focus,
+.orders-toolbar input:focus,
+.admin-select:focus {
+  border-color: var(--berry);
+  box-shadow: 0 0 0 3px rgba(168, 50, 85, 0.12);
+}
+
+.admin-heading {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  margin-bottom: 22px;
+}
+
+.admin-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.admin-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.summary-card {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: white;
+}
+
+.summary-card span,
+.summary-card strong {
+  display: block;
+}
+
+.summary-card span {
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.summary-card strong {
+  margin-top: 4px;
+  color: var(--berry-dark);
+  font-size: 1.35rem;
+}
+
+.admin-content {
+  grid-template-columns: minmax(0, 1fr) 360px;
+  align-items: start;
+}
+
+.orders-panel,
+.order-detail {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: white;
+  box-shadow: 0 10px 28px rgba(96, 39, 54, 0.08);
+}
+
+.orders-panel {
+  overflow: hidden;
+}
+
+.orders-toolbar {
+  padding: 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.orders-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.orders-table {
+  width: 100%;
+  min-width: 840px;
+  border-collapse: collapse;
+}
+
+.orders-table th,
+.orders-table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.orders-table th {
+  color: var(--berry-dark);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+}
+
+.orders-table td {
+  color: var(--ink);
+  font-size: 0.92rem;
+}
+
+.orders-table td > span,
+.order-mini {
+  display: block;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.orders-table tr.is-selected {
+  background: var(--rose-50);
+}
+
+.order-link {
+  border: 0;
+  background: transparent;
+  color: var(--berry);
+  padding: 0;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.admin-select {
+  min-width: 140px;
+  background: white;
+  font-size: 0.86rem;
+}
+
+.orders-panel .status-message {
+  padding: 12px 14px;
+}
+
+.order-detail {
+  position: sticky;
+  top: 86px;
+  padding: 16px;
+}
+
+.detail-heading {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.detail-heading h2 {
+  margin-bottom: 4px;
+  font-size: 1.35rem;
+}
+
+.detail-heading p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 6px 10px;
+  border-radius: var(--radius);
+  background: var(--rose-100);
+  color: var(--berry-dark);
+  font-size: 0.78rem;
+  font-weight: 850;
+}
+
+.detail-list {
+  display: grid;
+  gap: 10px;
+  margin: 14px 0 18px;
+}
+
+.detail-list div {
+  display: grid;
+  gap: 3px;
+}
+
+.detail-list dt {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.detail-list dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.items-list {
+  display: grid;
+  gap: 10px;
+}
+
+.items-list h3 {
+  margin-bottom: 0;
+}
+
+.admin-item {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--cream);
+}
+
+.admin-item strong,
+.admin-item span {
+  display: block;
+}
+
+.admin-item span {
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+@media (max-width: 980px) {
+  .shop-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .checkout-panel {
+    position: static;
+  }
+
+  .admin-login,
+  .admin-heading,
+  .admin-content {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-actions {
+    justify-content: flex-start;
+  }
+
+  .order-detail {
+    position: static;
+  }
+
+  .promise-grid,
+  .delivery-grid,
+  .admin-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .container {
+    width: calc(100vw - 32px);
+    max-width: calc(100vw - 32px);
+  }
+
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    width: calc(100vw - 32px);
+    gap: 2px;
+  }
+
+  .brand-logo {
+    width: 48px;
+    height: 48px;
+  }
+
+  .nav-links a {
+    flex: 0 0 auto;
+    min-width: 0;
+    padding: 6px 0;
+    text-align: left;
+  }
+
+  .header-actions {
+    width: calc(100vw - 32px);
+    justify-content: space-between;
+  }
+
+  .social-links {
+    flex-wrap: wrap;
+  }
+
+  .hero {
+    min-height: 62vh;
+    background-position: 58% center;
+  }
+
+  .hero-content {
+    width: calc(100vw - 32px);
+    max-width: 340px;
+    margin-left: 16px;
+    margin-right: auto;
+    padding: 58px 0 50px;
+  }
+
+  h1 {
+    font-size: 2.6rem;
+  }
+
+  .hero-copy {
+    width: 100%;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  h2 {
+    font-size: 1.65rem;
+  }
+
+  .products-grid,
+  .promise-grid,
+  .delivery-grid,
+  .admin-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .field-grid,
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-login {
+    padding: 18px;
+  }
+
+  .admin-page h1 {
+    font-size: 2.1rem;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-brand {
+    grid-template-columns: 72px minmax(0, 1fr);
+  }
+
+  .footer-logo {
+    width: 72px;
+    height: 72px;
+  }
+}
+
+    </style>
+  </head>
+  <body class="admin-page">
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="Cassia's Doces">
+        <img class="brand-logo" src="assets/logo-cassias.png" alt="" />
+        <span>Cassia's Doces</span>
+      </a>
+      <nav class="nav-links" aria-label="Navegacao admin">
+        <a href="/">Site</a>
+      </nav>
+    </header>
+
+    <main class="admin-shell container">
+      <section class="admin-login" id="loginPanel">
+        <div>
+          <p class="eyebrow">Admin</p>
+          <h1>Pedidos</h1>
+          <p>Entre para ver compradores, itens, pagamento, entrega e status dos pedidos salvos.</p>
+        </div>
+        <form class="admin-login-form" id="loginForm">
+          <label>
+            Senha do admin
+            <input type="password" id="adminPassword" autocomplete="current-password" placeholder="Senha: Admin2" />
+          </label>
+          <button class="button primary" type="submit">Entrar</button>
+          <p class="status-message" id="loginStatus" role="status"></p>
+        </form>
+      </section>
+
+      <section class="admin-dashboard" id="dashboard" hidden>
+        <div class="admin-heading">
+          <div>
+            <p class="eyebrow">Painel</p>
+            <h1>Pedidos recebidos</h1>
+            <p>Resumo dos pedidos salvos pelo site.</p>
+          </div>
+          <div class="admin-actions">
+            <button class="button secondary-dark" type="button" id="refreshOrders">Atualizar</button>
+            <button class="button ghost" type="button" id="logoutAdmin">Sair</button>
+          </div>
+        </div>
+
+        <div class="admin-summary" id="summaryCards"></div>
+
+        <div class="admin-content">
+          <section class="orders-panel" aria-label="Lista de pedidos">
+            <div class="orders-toolbar">
+              <label>
+                Buscar
+                <input type="search" id="orderSearch" placeholder="Nome, telefone, pedido ou pagamento" />
+              </label>
+            </div>
+            <div class="orders-table-wrap">
+              <table class="orders-table">
+                <thead>
+                  <tr>
+                    <th>Pedido</th>
+                    <th>Cliente</th>
+                    <th>Pagamento</th>
+                    <th>Pago</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Data</th>
+                  </tr>
+                </thead>
+                <tbody id="ordersTableBody"></tbody>
+              </table>
+            </div>
+            <p class="status-message" id="adminStatus" role="status"></p>
+          </section>
+
+          <aside class="order-detail" id="orderDetail" aria-label="Detalhes do pedido">
+            <div class="empty-cart">Selecione um pedido para ver os detalhes.</div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <script>
+const TOKEN_KEY = "cassias-admin-token";
+
+const adminState = {
+  token: sessionStorage.getItem(TOKEN_KEY) || "",
+  orders: [],
+  summary: null,
+  selectedOrderId: null
+};
+
+const money = new Intl.NumberFormat("pt-BR", {
+  style: "currency",
+  currency: "BRL"
+});
+
+const orderStatusLabels = {
+  novo: "Novo",
+  confirmado: "Confirmado",
+  em_preparo: "Em preparo",
+  saiu_para_entrega: "Saiu para entrega",
+  entregue: "Entregue",
+  cancelado: "Cancelado"
+};
+
+const paymentStatusLabels = {
+  pendente: "Pendente",
+  pago: "Pago"
+};
+
+const API_BASE = "";
+
+const loginPanel = document.querySelector("#loginPanel");
+const loginForm = document.querySelector("#loginForm");
+const adminPassword = document.querySelector("#adminPassword");
+const loginStatus = document.querySelector("#loginStatus");
+const dashboard = document.querySelector("#dashboard");
+const summaryCards = document.querySelector("#summaryCards");
+const ordersTableBody = document.querySelector("#ordersTableBody");
+const orderDetail = document.querySelector("#orderDetail");
+const adminStatus = document.querySelector("#adminStatus");
+const orderSearch = document.querySelector("#orderSearch");
+const refreshOrders = document.querySelector("#refreshOrders");
+const logoutAdmin = document.querySelector("#logoutAdmin");
+
+initAdmin();
+
+async function initAdmin() {
+  try {
+    await loadOrders({ silent: true });
+  } catch (error) {
+    sessionStorage.removeItem(TOKEN_KEY);
+    adminState.token = "";
+    showLogin(error.message);
+  }
+}
+
+async function loadOrders(options = {}) {
+  if (!options.silent) {
+    setAdminStatus("Carregando pedidos...");
+  }
+
+  const response = await fetch(apiUrl("/api/admin/orders?limit=200"), {
+    headers: getAuthHeaders()
+  });
+  const result = await response.json();
+
+  if (!response.ok) {
+    throw new Error(result.message || "Nao foi possivel carregar os pedidos.");
+  }
+
+  adminState.summary = result.summary;
+  adminState.orders = result.orders;
+
+  if (!adminState.selectedOrderId && adminState.orders.length > 0) {
+    adminState.selectedOrderId = adminState.orders[0].id;
+  }
+
+  if (!adminState.orders.some((order) => order.id === adminState.selectedOrderId)) {
+    adminState.selectedOrderId = adminState.orders[0]?.id || null;
+  }
+
+  showDashboard();
+  renderSummary();
+  renderOrders();
+  renderOrderDetail();
+  setAdminStatus(adminState.orders.length ? `${adminState.orders.length} pedido(s) carregado(s).` : "Nenhum pedido salvo ainda.");
+}
+
+function renderSummary() {
+  const summary = adminState.summary || {};
+  const cards = [
+    ["Pedidos", summary.totalOrders || 0],
+    ["Vendido", money.format(summary.totalSales || 0)],
+    ["Pago", money.format(summary.paidSales || 0)],
+    ["Pendente", money.format(summary.pendingSales || 0)]
+  ];
+
+  summaryCards.innerHTML = cards
+    .map(([label, value]) => `
+      <article class="summary-card">
+        <span>${escapeHtml(label)}</span>
+        <strong>${escapeHtml(value)}</strong>
+      </article>
+    `)
+    .join("");
+}
+
+function renderOrders() {
+  const orders = getFilteredOrders();
+
+  if (!orders.length) {
+    ordersTableBody.innerHTML = `
+      <tr>
+        <td colspan="7">
+          <div class="empty-cart">Nenhum pedido encontrado.</div>
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
+  ordersTableBody.innerHTML = orders
+    .map((order) => {
+      const selectedClass = order.id === adminState.selectedOrderId ? " is-selected" : "";
+      const itemCount = order.items.reduce((sum, item) => sum + item.quantity, 0);
+
+      return `
+        <tr class="${selectedClass}" data-order-id="${order.id}">
+          <td>
+            <button class="order-link" type="button" data-select-order="${order.id}">#${order.id}</button>
+            <span class="order-mini">${itemCount} item(ns)</span>
+          </td>
+          <td>
+            <strong>${escapeHtml(order.customerName)}</strong>
+            <span>${escapeHtml(order.phone)}</span>
+          </td>
+          <td>${escapeHtml(order.paymentMethod)}</td>
+          <td>
+            <select class="admin-select" data-payment-status="${order.id}">
+              ${renderOptions(paymentStatusLabels, order.paymentStatus)}
+            </select>
+          </td>
+          <td>${money.format(order.total)}</td>
+          <td>
+            <select class="admin-select" data-order-status="${order.id}">
+              ${renderOptions(orderStatusLabels, order.status)}
+            </select>
+          </td>
+          <td>${escapeHtml(formatDateTime(order.createdAt))}</td>
+        </tr>
+      `;
+    })
+    .join("");
+}
+
+function renderOrderDetail() {
+  const order = adminState.orders.find((entry) => entry.id === adminState.selectedOrderId);
+
+  if (!order) {
+    orderDetail.innerHTML = `<div class="empty-cart">Selecione um pedido para ver os detalhes.</div>`;
+    return;
+  }
+
+  const address = [
+    order.street,
+    order.addressNumber,
+    order.complement
+  ].filter(Boolean).join(", ");
+
+  orderDetail.innerHTML = `
+    <div class="detail-heading">
+      <div>
+        <p class="eyebrow">Pedido #${order.id}</p>
+        <h2>${escapeHtml(order.customerName)}</h2>
+        <p>${escapeHtml(order.phone)}</p>
+      </div>
+      <span class="status-pill">${escapeHtml(paymentStatusLabels[order.paymentStatus] || order.paymentStatus)}</span>
+    </div>
+
+    <dl class="detail-list">
+      <div>
+        <dt>Total</dt>
+        <dd>${money.format(order.total)}</dd>
+      </div>
+      <div>
+        <dt>Produtos</dt>
+        <dd>${money.format(order.subtotal)}</dd>
+      </div>
+      <div>
+        <dt>Entrega</dt>
+        <dd>${money.format(order.deliveryFee)} - ${escapeHtml(order.deliveryZoneName)}</dd>
+      </div>
+      <div>
+        <dt>Pagamento</dt>
+        <dd>${escapeHtml(order.paymentMethod)} - ${escapeHtml(paymentStatusLabels[order.paymentStatus] || order.paymentStatus)}</dd>
+      </div>
+      <div>
+        <dt>Status</dt>
+        <dd>${escapeHtml(orderStatusLabels[order.status] || order.status)}</dd>
+      </div>
+      <div>
+        <dt>Endereco</dt>
+        <dd>${escapeHtml(address)}</dd>
+      </div>
+      <div>
+        <dt>Data combinada</dt>
+        <dd>${escapeHtml(formatDelivery(order.deliveryDate, order.deliveryTime))}</dd>
+      </div>
+      <div>
+        <dt>Criado em</dt>
+        <dd>${escapeHtml(formatDateTime(order.createdAt))}</dd>
+      </div>
+      <div>
+        <dt>Observacoes</dt>
+        <dd>${escapeHtml(order.notes || "Sem observacoes")}</dd>
+      </div>
+    </dl>
+
+    <div class="items-list">
+      <h3>Itens comprados</h3>
+      ${order.items.map(renderItem).join("")}
+    </div>
+  `;
+}
+
+function renderItem(item) {
+  return `
+    <article class="admin-item">
+      <div>
+        <strong>${escapeHtml(item.quantity)}x ${escapeHtml(item.productName)}</strong>
+        <span>${escapeHtml(item.sizeLabel)} - ${escapeHtml(item.flavor)}</span>
+      </div>
+      <span>${money.format(item.lineTotal)}</span>
+    </article>
+  `;
+}
+
+function getFilteredOrders() {
+  const query = orderSearch.value.trim().toLowerCase();
+
+  if (!query) {
+    return adminState.orders;
+  }
+
+  return adminState.orders.filter((order) => {
+    return [
+      order.id,
+      order.customerName,
+      order.phone,
+      order.paymentMethod,
+      order.paymentStatus,
+      order.status,
+      order.deliveryZoneName
+    ].some((value) => String(value || "").toLowerCase().includes(query));
+  });
+}
+
+async function updateOrder(orderId, payload) {
+  setAdminStatus("Atualizando pedido...");
+
+  const response = await fetch(apiUrl(`/api/admin/orders/${orderId}`), {
+    method: "PATCH",
+    headers: getAuthHeaders({ "Content-Type": "application/json" }),
+    body: JSON.stringify(payload)
+  });
+  const result = await response.json();
+
+  if (!response.ok) {
+    throw new Error(result.message || "Nao foi possivel atualizar.");
+  }
+
+  await loadOrders({ silent: true });
+  setAdminStatus(`Pedido #${orderId} atualizado.`);
+}
+
+function renderOptions(options, selectedValue) {
+  return Object.entries(options)
+    .map(([value, label]) => {
+      const selected = value === selectedValue ? " selected" : "";
+      return `<option value="${escapeAttr(value)}"${selected}>${escapeHtml(label)}</option>`;
+    })
+    .join("");
+}
+
+function getAuthHeaders(extra = {}) {
+  const headers = { ...extra };
+
+  if (adminState.token) {
+    headers.Authorization = `Bearer ${adminState.token}`;
+  }
+
+  return headers;
+}
+
+function apiUrl(path) {
+  return `${API_BASE}${path}`;
+}
+
+function showDashboard() {
+  loginPanel.hidden = true;
+  dashboard.hidden = false;
+  loginStatus.textContent = "";
+  loginStatus.classList.remove("is-error");
+}
+
+function showLogin(message = "", isError = false) {
+  dashboard.hidden = true;
+  loginPanel.hidden = false;
+  loginStatus.textContent = message;
+  loginStatus.classList.toggle("is-error", isError);
+}
+
+function setAdminStatus(message, isError = false) {
+  adminStatus.textContent = message;
+  adminStatus.classList.toggle("is-error", isError);
+}
+
+function formatDelivery(date, time) {
+  if (!date && !time) {
+    return "Nao informado";
+  }
+
+  return [formatDate(date), time].filter(Boolean).join(" as ");
+}
+
+function formatDateTime(value) {
+  if (!value) {
+    return "-";
+  }
+
+  const [date, time = ""] = String(value).split(" ");
+  return [formatDate(date), time.slice(0, 5)].filter(Boolean).join(" ");
+}
+
+function formatDate(value) {
+  if (!value) {
+    return "";
+  }
+
+  const [year, month, day] = String(value).slice(0, 10).split("-");
+
+  if (!year || !month || !day) {
+    return String(value);
+  }
+
+  return `${day}/${month}/${year}`;
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function escapeAttr(value) {
+  return escapeHtml(value);
+}
+
+loginForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  adminState.token = adminPassword.value.trim();
+  sessionStorage.setItem(TOKEN_KEY, adminState.token);
+  loginStatus.textContent = "Entrando...";
+
+  try {
+    await loadOrders({ silent: true });
+  } catch (error) {
+    sessionStorage.removeItem(TOKEN_KEY);
+    adminState.token = "";
+    loginStatus.textContent = error.message;
+    loginStatus.classList.add("is-error");
+  }
+});
+
+refreshOrders.addEventListener("click", () => {
+  loadOrders().catch((error) => setAdminStatus(error.message, true));
+});
+
+logoutAdmin.addEventListener("click", () => {
+  adminState.token = "";
+  sessionStorage.removeItem(TOKEN_KEY);
+  showLogin("Voce saiu do admin.");
+});
+
+orderSearch.addEventListener("input", () => {
+  renderOrders();
+});
+
+ordersTableBody.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-select-order]");
+
+  if (!button) {
+    return;
+  }
+
+  adminState.selectedOrderId = Number(button.dataset.selectOrder);
+  renderOrders();
+  renderOrderDetail();
+});
+
+ordersTableBody.addEventListener("change", async (event) => {
+  const paymentSelect = event.target.closest("[data-payment-status]");
+  const orderSelect = event.target.closest("[data-order-status]");
+
+  try {
+    if (paymentSelect) {
+      const orderId = Number(paymentSelect.dataset.paymentStatus);
+      adminState.selectedOrderId = orderId;
+      await updateOrder(orderId, { paymentStatus: paymentSelect.value });
+      return;
+    }
+
+    if (orderSelect) {
+      const orderId = Number(orderSelect.dataset.orderStatus);
+      adminState.selectedOrderId = orderId;
+      await updateOrder(orderId, { status: orderSelect.value });
+    }
+  } catch (error) {
+    setAdminStatus(error.message, true);
+  }
+});
+
+    </script>
+    <script>
+(() => {
+  const tokenKey = "cassias-admin-token";
+  const localOrdersKey = "cassias-local-orders";
+  const defaultPassword = "Admin2";
+  const state = {
+    token: sessionStorage.getItem(tokenKey) || "",
+    orders: [],
+    summary: null,
+    selectedOrderId: null,
+    storage: "api",
+    ready: false
+  };
+  const moneyFormat = new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL"
+  });
+  const orderLabels = {
+    novo: "Novo",
+    confirmado: "Confirmado",
+    em_preparo: "Em preparo",
+    saiu_para_entrega: "Saiu para entrega",
+    entregue: "Entregue",
+    cancelado: "Cancelado"
+  };
+  const paymentLabels = {
+    pendente: "Pendente",
+    pago: "Pago"
+  };
+  const loginPanelEl = document.querySelector("#loginPanel");
+  const loginFormEl = document.querySelector("#loginForm");
+  const passwordEl = document.querySelector("#adminPassword");
+  const loginStatusEl = document.querySelector("#loginStatus");
+  const dashboardEl = document.querySelector("#dashboard");
+  const summaryEl = document.querySelector("#summaryCards");
+  const tableBodyEl = document.querySelector("#ordersTableBody");
+  const detailEl = document.querySelector("#orderDetail");
+  const adminStatusEl = document.querySelector("#adminStatus");
+  const searchEl = document.querySelector("#orderSearch");
+  const refreshEl = document.querySelector("#refreshOrders");
+  const logoutEl = document.querySelector("#logoutAdmin");
+
+  const originalShowLogin = window.showLogin;
+  if (typeof originalShowLogin === "function") {
+    window.showLogin = function patchedShowLogin(message = "", isError = false) {
+      if (state.ready) {
+        return;
+      }
+
+      originalShowLogin(message, isError);
+    };
+  }
+
+  initEnhancedAdmin();
+
+  async function initEnhancedAdmin() {
+    try {
+      await loadOrdersEnhanced({ silent: true });
+    } catch (error) {
+      sessionStorage.removeItem(tokenKey);
+      state.token = "";
+      showLoginEnhanced(error.message, true);
+    }
+  }
+
+  async function loadOrdersEnhanced(options = {}) {
+    if (!options.silent) {
+      setAdminStatusEnhanced("Carregando pedidos...");
+    }
+
+    if (location.protocol === "file:") {
+      loadLocalDashboardEnhanced("Admin local: mostrando pedidos salvos neste navegador.");
+      return;
+    }
+
+    let response;
+
+    try {
+      response = await fetch("/api/admin/orders?limit=200", {
+        headers: getHeadersEnhanced()
+      });
+    } catch (error) {
+      loadLocalDashboardEnhanced(`API indisponivel (${error.message}). Mostrando pedidos salvos neste navegador.`);
+      return;
+    }
+
+    const result = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+      if (response.status === 401 || response.status === 403) {
+        throw new Error(result.message || "Senha de admin invalida.");
+      }
+
+      loadLocalDashboardEnhanced(result.message || `API respondeu ${response.status}. Mostrando pedidos locais.`);
+      return;
+    }
+
+    state.storage = "api";
+    state.orders = Array.isArray(result.orders) ? result.orders : [];
+    state.summary = result.summary || buildSummaryEnhanced(state.orders);
+    normalizeSelectionEnhanced();
+    renderDashboardEnhanced();
+    setAdminStatusEnhanced(state.orders.length ? `${state.orders.length} pedido(s) carregado(s).` : "Nenhum pedido salvo ainda.");
+  }
+
+  function loadLocalDashboardEnhanced(reason) {
+    ensureLocalPasswordEnhanced();
+    state.storage = "local";
+    state.orders = loadLocalOrdersEnhanced();
+    state.summary = buildSummaryEnhanced(state.orders);
+    normalizeSelectionEnhanced();
+    renderDashboardEnhanced();
+
+    const message = state.orders.length
+      ? `${state.orders.length} pedido(s) local(is) carregado(s). ${reason}`
+      : `Nenhum pedido local salvo ainda. ${reason}`;
+
+    setAdminStatusEnhanced(message, true);
+  }
+
+  function ensureLocalPasswordEnhanced() {
+    if (state.token !== defaultPassword) {
+      throw new Error("Digite a senha Admin2 para entrar no admin.");
+    }
+  }
+
+  function renderDashboardEnhanced() {
+    state.ready = true;
+    showDashboardEnhanced();
+    renderSummaryEnhanced();
+    renderOrdersEnhanced();
+    renderDetailEnhanced();
+  }
+
+  function normalizeSelectionEnhanced() {
+    if (!state.selectedOrderId && state.orders.length > 0) {
+      state.selectedOrderId = state.orders[0].id;
+    }
+
+    if (!state.orders.some((order) => order.id === state.selectedOrderId)) {
+      state.selectedOrderId = state.orders[0]?.id || null;
+    }
+  }
+
+  function renderSummaryEnhanced() {
+    const summary = state.summary || {};
+    const cards = [
+      ["Pedidos", summary.totalOrders || 0],
+      ["Vendido", moneyFormat.format(summary.totalSales || 0)],
+      ["Pago", moneyFormat.format(summary.paidSales || 0)],
+      ["Pendente", moneyFormat.format(summary.pendingSales || 0)]
+    ];
+
+    summaryEl.innerHTML = cards.map(([label, value]) => `
+      <article class="summary-card">
+        <span>${escapeHtmlEnhanced(label)}</span>
+        <strong>${escapeHtmlEnhanced(value)}</strong>
+      </article>
+    `).join("");
+  }
+
+  function renderOrdersEnhanced() {
+    const orders = getFilteredOrdersEnhanced();
+
+    if (!orders.length) {
+      tableBodyEl.innerHTML = `
+        <tr>
+          <td colspan="7">
+            <div class="empty-cart">Nenhum pedido encontrado.</div>
+          </td>
+        </tr>
+      `;
+      return;
+    }
+
+    tableBodyEl.innerHTML = orders.map((order) => {
+      const selectedClass = order.id === state.selectedOrderId ? " is-selected" : "";
+      const itemCount = Array.isArray(order.items) ? order.items.reduce((sum, item) => sum + Number(item.quantity || 0), 0) : 0;
+      const localLabel = order.localOnly ? "local" : "";
+
+      return `
+        <tr class="${selectedClass}" data-order-id="${order.id}">
+          <td>
+            <button class="order-link" type="button" data-select-order="${order.id}">#${order.id}</button>
+            <span class="order-mini">${itemCount} item(ns) ${escapeHtmlEnhanced(localLabel)}</span>
+          </td>
+          <td>
+            <strong>${escapeHtmlEnhanced(order.customerName)}</strong>
+            <span>${escapeHtmlEnhanced(order.phone)}</span>
+          </td>
+          <td>${escapeHtmlEnhanced(order.paymentMethod)}</td>
+          <td>
+            <select class="admin-select" data-payment-status="${order.id}">
+              ${renderOptionsEnhanced(paymentLabels, order.paymentStatus)}
+            </select>
+          </td>
+          <td>${moneyFormat.format(order.total || 0)}</td>
+          <td>
+            <select class="admin-select" data-order-status="${order.id}">
+              ${renderOptionsEnhanced(orderLabels, order.status)}
+            </select>
+          </td>
+          <td>${escapeHtmlEnhanced(formatDateTimeEnhanced(order.createdAt))}</td>
+        </tr>
+      `;
+    }).join("");
+  }
+
+  function renderDetailEnhanced() {
+    const order = state.orders.find((entry) => entry.id === state.selectedOrderId);
+
+    if (!order) {
+      detailEl.innerHTML = '<div class="empty-cart">Selecione um pedido para ver os detalhes.</div>';
+      return;
+    }
+
+    const address = [order.street, order.addressNumber, order.complement].filter(Boolean).join(", ");
+    const items = Array.isArray(order.items) ? order.items : [];
+
+    detailEl.innerHTML = `
+      <div class="detail-heading">
+        <div>
+          <p class="eyebrow">Pedido #${order.id}${order.localOnly ? " - local" : ""}</p>
+          <h2>${escapeHtmlEnhanced(order.customerName)}</h2>
+          <p>${escapeHtmlEnhanced(order.phone)}</p>
+        </div>
+        <span class="status-pill">${escapeHtmlEnhanced(paymentLabels[order.paymentStatus] || order.paymentStatus)}</span>
+      </div>
+
+      <dl class="detail-list">
+        <div>
+          <dt>Total</dt>
+          <dd>${moneyFormat.format(order.total || 0)}</dd>
+        </div>
+        <div>
+          <dt>Produtos</dt>
+          <dd>${moneyFormat.format(order.subtotal || 0)}</dd>
+        </div>
+        <div>
+          <dt>Entrega</dt>
+          <dd>${moneyFormat.format(order.deliveryFee || 0)} - ${escapeHtmlEnhanced(order.deliveryZoneName)}</dd>
+        </div>
+        <div>
+          <dt>Pagamento</dt>
+          <dd>${escapeHtmlEnhanced(order.paymentMethod)} - ${escapeHtmlEnhanced(paymentLabels[order.paymentStatus] || order.paymentStatus)}</dd>
+        </div>
+        <div>
+          <dt>Status</dt>
+          <dd>${escapeHtmlEnhanced(orderLabels[order.status] || order.status)}</dd>
+        </div>
+        <div>
+          <dt>Endereco</dt>
+          <dd>${escapeHtmlEnhanced(address)}</dd>
+        </div>
+        <div>
+          <dt>Data combinada</dt>
+          <dd>${escapeHtmlEnhanced(formatDeliveryEnhanced(order.deliveryDate, order.deliveryTime))}</dd>
+        </div>
+        <div>
+          <dt>Criado em</dt>
+          <dd>${escapeHtmlEnhanced(formatDateTimeEnhanced(order.createdAt))}</dd>
+        </div>
+        <div>
+          <dt>Observacoes</dt>
+          <dd>${escapeHtmlEnhanced(order.notes || "Sem observacoes")}</dd>
+        </div>
+      </dl>
+
+      <div class="items-list">
+        <h3>Itens comprados</h3>
+        ${items.map(renderItemEnhanced).join("")}
+      </div>
+    `;
+  }
+
+  function renderItemEnhanced(item) {
+    return `
+      <article class="admin-item">
+        <div>
+          <strong>${escapeHtmlEnhanced(item.quantity)}x ${escapeHtmlEnhanced(item.productName)}</strong>
+          <span>${escapeHtmlEnhanced(item.sizeLabel)} - ${escapeHtmlEnhanced(item.flavor)}</span>
+        </div>
+        <span>${moneyFormat.format(item.lineTotal || 0)}</span>
+      </article>
+    `;
+  }
+
+  function getFilteredOrdersEnhanced() {
+    const query = searchEl.value.trim().toLowerCase();
+
+    if (!query) {
+      return state.orders;
+    }
+
+    return state.orders.filter((order) => {
+      return [
+        order.id,
+        order.customerName,
+        order.phone,
+        order.paymentMethod,
+        order.paymentStatus,
+        order.status,
+        order.deliveryZoneName
+      ].some((value) => String(value || "").toLowerCase().includes(query));
+    });
+  }
+
+  async function updateOrderEnhanced(orderId, payload) {
+    setAdminStatusEnhanced("Atualizando pedido...");
+
+    if (state.storage === "local") {
+      updateLocalOrderEnhanced(orderId, payload);
+      setAdminStatusEnhanced(`Pedido #${orderId} atualizado no admin local.`);
+      return;
+    }
+
+    const response = await fetch(`/api/admin/orders/${orderId}`, {
+      method: "PATCH",
+      headers: getHeadersEnhanced({ "Content-Type": "application/json" }),
+      body: JSON.stringify(payload)
+    });
+    const result = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+      throw new Error(result.message || "Nao foi possivel atualizar.");
+    }
+
+    await loadOrdersEnhanced({ silent: true });
+    setAdminStatusEnhanced(`Pedido #${orderId} atualizado.`);
+  }
+
+  function updateLocalOrderEnhanced(orderId, payload) {
+    const orders = loadLocalOrdersEnhanced();
+    const order = orders.find((entry) => entry.id === orderId);
+
+    if (!order) {
+      throw new Error("Pedido local nao encontrado.");
+    }
+
+    Object.assign(order, payload);
+    localStorage.setItem(localOrdersKey, JSON.stringify(orders));
+    state.orders = orders;
+    state.summary = buildSummaryEnhanced(orders);
+    normalizeSelectionEnhanced();
+    renderDashboardEnhanced();
+  }
+
+  function buildSummaryEnhanced(orders) {
+    return orders.reduce((summary, order) => {
+      const total = Number(order.total || 0);
+
+      summary.totalOrders += 1;
+      summary.totalSales += total;
+
+      if (order.paymentStatus === "pago") {
+        summary.paidSales += total;
+      } else {
+        summary.pendingSales += total;
+      }
+
+      return summary;
+    }, {
+      totalOrders: 0,
+      totalSales: 0,
+      paidSales: 0,
+      pendingSales: 0
+    });
+  }
+
+  function renderOptionsEnhanced(options, selectedValue) {
+    return Object.entries(options).map(([value, label]) => {
+      const selected = value === selectedValue ? " selected" : "";
+      return `<option value="${escapeAttrEnhanced(value)}"${selected}>${escapeHtmlEnhanced(label)}</option>`;
+    }).join("");
+  }
+
+  function getHeadersEnhanced(extra = {}) {
+    const headers = { ...extra };
+
+    if (state.token) {
+      headers.Authorization = `Bearer ${state.token}`;
+    }
+
+    return headers;
+  }
+
+  function showDashboardEnhanced() {
+    loginPanelEl.hidden = true;
+    dashboardEl.hidden = false;
+    loginStatusEl.textContent = "";
+    loginStatusEl.classList.remove("is-error");
+  }
+
+  function showLoginEnhanced(message = "", isError = false) {
+    state.ready = false;
+    dashboardEl.hidden = true;
+    loginPanelEl.hidden = false;
+    loginStatusEl.textContent = message;
+    loginStatusEl.classList.toggle("is-error", isError);
+  }
+
+  function setAdminStatusEnhanced(message, isError = false) {
+    adminStatusEl.textContent = message;
+    adminStatusEl.classList.toggle("is-error", isError);
+  }
+
+  function loadLocalOrdersEnhanced() {
+    try {
+      const orders = JSON.parse(localStorage.getItem(localOrdersKey) || "[]");
+      return Array.isArray(orders) ? orders : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function formatDeliveryEnhanced(date, time) {
+    if (!date && !time) {
+      return "Nao informado";
+    }
+
+    return [formatDateEnhanced(date), time].filter(Boolean).join(" as ");
+  }
+
+  function formatDateTimeEnhanced(value) {
+    if (!value) {
+      return "-";
+    }
+
+    const [date, time = ""] = String(value).split(" ");
+    return [formatDateEnhanced(date), time.slice(0, 5)].filter(Boolean).join(" ");
+  }
+
+  function formatDateEnhanced(value) {
+    if (!value) {
+      return "";
+    }
+
+    const [year, month, day] = String(value).slice(0, 10).split("-");
+    return year && month && day ? `${day}/${month}/${year}` : String(value);
+  }
+
+  function escapeHtmlEnhanced(value) {
+    return String(value)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  function escapeAttrEnhanced(value) {
+    return escapeHtmlEnhanced(value);
+  }
+
+  loginFormEl.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    state.token = passwordEl.value.trim();
+    sessionStorage.setItem(tokenKey, state.token);
+    loginStatusEl.textContent = "Entrando...";
+
+    try {
+      await loadOrdersEnhanced({ silent: true });
+    } catch (error) {
+      sessionStorage.removeItem(tokenKey);
+      state.token = "";
+      loginStatusEl.textContent = error.message;
+      loginStatusEl.classList.add("is-error");
+    }
+  }, true);
+
+  refreshEl.addEventListener("click", (event) => {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    loadOrdersEnhanced().catch((error) => setAdminStatusEnhanced(error.message, true));
+  }, true);
+
+  logoutEl.addEventListener("click", (event) => {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    state.token = "";
+    state.ready = false;
+    sessionStorage.removeItem(tokenKey);
+    showLoginEnhanced("Voce saiu do admin.");
+  }, true);
+
+  searchEl.addEventListener("input", (event) => {
+    event.stopImmediatePropagation();
+    renderOrdersEnhanced();
+  }, true);
+
+  tableBodyEl.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-select-order]");
+
+    if (!button) {
+      return;
+    }
+
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    state.selectedOrderId = Number(button.dataset.selectOrder);
+    renderOrdersEnhanced();
+    renderDetailEnhanced();
+  }, true);
+
+  tableBodyEl.addEventListener("change", async (event) => {
+    const paymentSelect = event.target.closest("[data-payment-status]");
+    const orderSelect = event.target.closest("[data-order-status]");
+
+    if (!paymentSelect && !orderSelect) {
+      return;
+    }
+
+    event.preventDefault();
+    event.stopImmediatePropagation();
+
+    try {
+      if (paymentSelect) {
+        const orderId = Number(paymentSelect.dataset.paymentStatus);
+        state.selectedOrderId = orderId;
+        await updateOrderEnhanced(orderId, { paymentStatus: paymentSelect.value });
+        return;
+      }
+
+      const orderId = Number(orderSelect.dataset.orderStatus);
+      state.selectedOrderId = orderId;
+      await updateOrderEnhanced(orderId, { status: orderSelect.value });
+    } catch (error) {
+      setAdminStatusEnhanced(error.message, true);
+    }
+  }, true);
+})();
+    </script>
+  </body>
+</html>
+
+
